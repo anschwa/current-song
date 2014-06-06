@@ -10,8 +10,8 @@ on run
 	if cmus_status is "playing" then
 		set info to ""
 		set _title to do shell script "/usr/local/Cellar/cmus/2.5.0/bin/cmus-remote -Q | grep 'title' | cut -d ' ' -f 3-"
-		set _artist to do shell script "/usr/local/Cellar/cmus/2.5.0/bin/cmus-remote -Q | grep 'artist' | cut -d ' ' -f 3-"
-		set _album to do shell script "/usr/local/Cellar/cmus/2.5.0/bin/cmus-remote -Q | grep 'album' | cut -d ' ' -f 3-"
+		set _artist to do shell script "/usr/local/Cellar/cmus/2.5.0/bin/cmus-remote -Q | grep -e '[^m]artist' | cut -d ' ' -f 3-"
+		set _album to do shell script "/usr/local/Cellar/cmus/2.5.0/bin/cmus-remote -Q | grep -e 'album[^a]' | cut -d ' ' -f 3-"
 		set info to _title & return & _artist & return & _album as string
 		return info
 	end if
