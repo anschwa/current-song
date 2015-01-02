@@ -24,12 +24,14 @@ on run
 		if runCount > 0 then
 			tell application "Spotify"
 				if player state is playing then
+					set the sound volume to 100
 					set _artist to artist of current track
 					set _title to name of current track
 					set _album to album of current track
 					set info to _title & return & _artist & return & _album as string
 					if info contains "http" or info contains "spotify:" then
 						set info to ""
+						set the sound volume to 0 -- mute Spotify during advertisements like Spotifree
 					end if
 				end if
 			end tell
