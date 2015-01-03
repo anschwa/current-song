@@ -32,6 +32,7 @@ on run
 					if info contains "http" or info contains "spotify:" then
 						set info to ""
 						set the sound volume to 0 -- mute Spotify during advertisements like Spotifree
+						play
 					end if
 				end if
 			end tell
