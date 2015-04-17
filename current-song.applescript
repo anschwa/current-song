@@ -20,13 +20,14 @@ on run
 	try
 		set info to do shell script "/usr/local/Cellar/mpc/0.26/bin/mpc -f \"%title%
 %artist%
-%album%\" | head -3"
+%album%\" | head -4"
 		-- note: applescript compiles `\n` out of the string
 	end try
-	if info contains "volume:" then
+	if info contains "[playing]" then
+		return info
+	else if info contains "[paused]" or info contains "volume:" then
 		set info to ""
 	end if
-	return info
 	-- Display song info from Spotify
 	if application "Spotify" is running then
 		tell application "System Events"
@@ -45,10 +46,10 @@ on run
 						set the sound volume to 0 -- mute Spotify during advertisements like Spotifree
 						play
 					end if
+					return info
 				end if
 			end tell
 		end if
-		if info is not "" then return info
 	end if
 	-- Display song info from iTunes
 	if application "iTunes" is running then
@@ -62,9 +63,9 @@ on run
 					set _title to name of current track
 					set _album to album of current track
 					set info to _title & return & _artist & return & _album as string
+					return info
 				end if
 			end tell
 		end if
-		return info
 	end if
 end run
