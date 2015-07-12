@@ -18,7 +18,7 @@ on run
 	end if
 	-- Display song info from mpc
 	try
-		set info to do shell script "/usr/local/Cellar/mpc/0.26/bin/mpc -f \"%title%
+		set info to do shell script "/usr/local/Cellar/mpc/0.26/bin/mpc -h 10.0.0.37 -f \"%title%
 %artist%
 %album%\" | head -4"
 		-- note: applescript compiles `\n` out of the string
