@@ -36,15 +36,12 @@ on run
 		if runCount > 0 then
 			tell application "Spotify"
 				if player state is playing then
-					set the sound volume to 100
 					set _title to name of current track
 					set _artist to artist of current track
 					set _album to album of current track
 					set info to _title & return & _artist & return & _album as string
 					if _artist is equal to "" and _album is equal to "" then
 						set info to ""
-						set the sound volume to 0 -- mute Spotify during advertisements like Spotifree
-						play
 					end if
 					return info
 				end if
